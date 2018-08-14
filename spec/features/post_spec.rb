@@ -12,4 +12,14 @@ describe 'new post' do
     
     expect(page).to have_content('Post Form')
   end
+  
+  it "displays a new post form that redirects to the index page, which when contains the submitted post's title and description" do
+      visit new_post_path
+      fill_in 'post_title', with: 'My post title'
+      fill_in 'post_description', with: 'My post description'
+      click_on 'Submit Post'
+      
+      expect(page.current_path).to eq(posts_path)
+      expect(page).to have_content('My post title')
+      expect
 end
